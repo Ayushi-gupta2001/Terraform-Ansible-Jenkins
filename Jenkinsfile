@@ -33,23 +33,11 @@ pipeline {
                 echo 'Fetching public ip of ec2 resource'
                 sh '''  
                 cd ./infra-as-code/
-                terraform refresh
                 PUBLIC_IP_ADDRESS=$(terraform output expose_public_ip_address)
-                echo $PUBLIC_IP_ADDRESS
                 mkdir -p '../ansible'
                 echo "[WEB_SERVER]" > ../ansible/inventory
-                cat ../ansible/inventory
                 echo "${PUBLIC_IP_ADDRESS} ansible_user=ubuntu ansible_ssh_private_key_file="${WORKSPACE}/infra-as-code/MyEC2InstanceLoginKey" ansible_ssh_common_args='-o StrictHostKeyChecking=no'" >> ../ansible/inventory
-                cat ../ansible/inventory
                 '''
-            }
-        }
-        stage('check ansible installed'){
-            steps {
-                echo "checking ansible version"
-                sh '''
-                    ansible --version
-                    '''
             }
         }
         stage('Deploy') {
