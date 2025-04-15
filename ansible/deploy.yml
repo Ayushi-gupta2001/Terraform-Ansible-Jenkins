@@ -1,0 +1,46 @@
+- name: Deploy website on EC2 server
+  hosts: all
+  become: true
+  tasks:
+
+    - name: update apt packages
+      apt:  
+        update_cache: yes
+
+    - name: Install web apache server
+      apt: 
+        name: apache2
+        state: present
+    
+    - name: start and enable web server 
+      service: 
+        name: apache2
+        state: started
+        enabled: yes
+
+    - name: Install git
+      apt:
+        name: git
+        state: present
+
+    - name: clone the wesbite repo code
+      git: 
+        repo: https://github.com/Ayushi-gupta2001/Personal-Portfolio.git
+        dest: /tmp/Personal-Portfolio
+        version: test
+        force: yes
+
+    - name: copy website files to apache web server file
+      copy: 
+        src: /tmp/Personal-Portfolio/static-website/
+        dest: /var/www/html/
+        remote_src: yes
+
+    - name: set the premission for apache
+      file: 
+        path: /var/www/html
+        owner: www-data
+        group: www-data
+        mode: '0755'  ## here '0' meaning that there is no special permission is set
+        recurse: yes
+        state: directory
