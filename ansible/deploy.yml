@@ -25,7 +25,7 @@
 
     - name: clone the wesbite repo code
       git: 
-        repo: https://github.com/Ayushi-gupta2001/Personal-Portfolio.git
+        repo: https://github.com/Ayushi-gupta2001/Terraform-Ansible-Jenkins.git
         dest: /tmp/Personal-Portfolio
         version: test
         force: yes
