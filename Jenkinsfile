@@ -11,7 +11,6 @@ pipeline {
                 echo 'Creating resources on AWS EC2 using terraform script......'
                 sh '''
                 cd ./infra-as-code/
-                terraform fmt
                 terraform init
                 terraform validate
                 terraform plan
@@ -38,6 +37,7 @@ pipeline {
                 PUBLIC_IP_ADDRESS=$(terraform output expose_public_ip_address)
                 mkdir -p '../ansible'
                 echo "[WEB_SERVER]" > ../ansible/inventory
+                chmod 600 ${WORKSPACE}/infra-as-code/MyEC2InstanceLoginKey
                 echo "${PUBLIC_IP_ADDRESS} ansible_user=ubuntu ansible_ssh_private_key_file="${WORKSPACE}/infra-as-code/MyEC2InstanceLoginKey" ansible_ssh_common_args='-o StrictHostKeyChecking=no'" >> ../ansible/inventory
                 '''
             }
