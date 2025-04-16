@@ -25,7 +25,7 @@
 
     - name: copy website files to apache web server file
       copy: 
-        src: "{{ playbook_dir }}/../static-website/"
+        src: ${{ playbook_dir }}/../static-website/
         dest: /var/www/html/
 
     - name: set the premission for apache
