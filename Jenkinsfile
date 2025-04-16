@@ -18,6 +18,7 @@ pipeline {
                 terraform apply --auto-approve
                 '''
             }
+            /***
             post{
                 failure {
                     echo "Deleting the resources if resources creation get fails"
@@ -27,6 +28,7 @@ pipeline {
                     '''
                 } 
             }
+            ***/
         }
         stage('Fetch public Ip of EC2 machine') {
             steps {

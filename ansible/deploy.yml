@@ -23,18 +23,11 @@
         name: git
         state: present
 
-    - name: clone the wesbite repo code
-      git: 
-        repo: https://github.com/Ayushi-gupta2001/Terraform-Ansible-Jenkins.git
-        dest: /tmp/Personal-Portfolio
-        version: test
-        force: yes
-
     - name: copy website files to apache web server file
       copy: 
-        src: /tmp/Personal-Portfolio/static-website/
+        src: "{{ playbook_dir }}/../static-website/"
         dest: /var/www/html/
-        remote_src: yes
+      delegate_to: localhost
 
     - name: set the premission for apache
       file: 
