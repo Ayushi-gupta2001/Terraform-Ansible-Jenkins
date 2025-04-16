@@ -92,4 +92,4 @@ This project automates the deployment of a web application on an AWS EC2 instanc
        http://<public-ip>
     ```
 
-TADA!! YOUR WEBSITE IS LIVE!!:smiley:
+TADA!! YOUR WEBSITE IS LIVE!! :smiley:
