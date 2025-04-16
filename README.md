@@ -5,6 +5,7 @@ This project automates the deployment of a web application on an AWS EC2 instanc
 -  **Terraform** for infrastructure provisioning
 -  **Jenkins** for CI/CD
 -  **Ansible** for configuration management
+-  AWS Account OR IAM Account
 
 ---
 
