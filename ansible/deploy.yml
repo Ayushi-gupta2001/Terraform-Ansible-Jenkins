@@ -1,4 +1,4 @@
-- name: Deploy website on EC2 server
+- name: Deploy static website on EC2 server
   hosts: all
   become: true
   tasks:
@@ -7,12 +7,12 @@
       apt:  
         update_cache: yes
 
-    - name: Install web apache server
+    - name: Install Apache web server
       apt: 
         name: apache2
         state: present
     
-    - name: start and enable web server 
+    - name: start and enable Apache service 
       service: 
         name: apache2
         state: started
@@ -23,12 +23,12 @@
         name: git
         state: present
 
-    - name: copy website files to apache web server file
+    - name: Copy website files to Apache document root
       copy: 
         src: "{{ playbook_dir }}/../static-website/"
         dest: /var/www/html/
 
-    - name: set the premission for apache
+    - name: Set correct permissions for Apache web directory
       file: 
         path: /var/www/html
         owner: www-data

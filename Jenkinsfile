@@ -6,9 +6,9 @@ pipeline {
         AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_KEY_ID')
     }
     stages {
-        stage('Create') {
+        stage('Provision AWS EC2 Instance with Terraform') {
             steps {
-                echo 'Creating resources on AWS EC2 using terraform script......'
+                echo 'Provisioning AWS EC2 instance using Terraform...'
                 sh '''
                 cd ./infra-as-code/
                 terraform init
@@ -20,7 +20,7 @@ pipeline {
             /***
             post{
                 failure {
-                    echo "Deleting the resources if resources creation get fails"
+                    echo "Cleaning up resources as Terraform apply failed"
                     sh '''
                     cd ./infra-as-code/
                     terraform destroy --auto-approve
@@ -29,9 +29,9 @@ pipeline {
             }
             ***/
         }
-        stage('Fetch public Ip of EC2 machine') {
+        stage('Retrieve EC2 Public IP') {
             steps {
-                echo 'Fetching public ip of ec2 resource'
+                echo 'Retrieving public IP address of the EC2 instance...'
                 sh '''  
                 cd ./infra-as-code/
                 PUBLIC_IP_ADDRESS=$(terraform output expose_public_ip_address)
@@ -42,9 +42,9 @@ pipeline {
                 '''
             }
         }
-        stage('Deploy') {
+        stage('Deploy Application using Ansible') {
             steps {
-                echo 'Deploy the code using ansible on newly created resources by terraform'
+                echo 'Deploying application to EC2 instance using Ansible...'
                 sh '''
                     cd $WORKSPACE
                     ansible-playbook -i ./ansible/inventory ./ansible/deploy.yml
