@@ -23,11 +23,18 @@
         name: git
         state: present
 
-    - name: copy website files to apache web server file
-      copy: 
-        src: "{{ playbook_dir }}/../static-website/"
-        dest: /var/www/html/
+    - name: clone the website file
+      git: 
+        repo: https://github.com/Ayushi-gupta2001/Terraform-Ansible-Jenkins.git
+        dest: /tmp/website
+        version: test
 
+    - name: Copy the file to wesbite folder
+      copy:
+        src: /tmp/website/static-website/
+        dest: /var/www/html
+      remote_src: yes
+      
     - name: set the premission for apache
       file: 
         path: /var/www/html
