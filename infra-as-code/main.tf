@@ -1,13 +1,12 @@
 /*
-    In this project we will deploy an application on EC2 server using IAC ***TERRAFORM***.
+  This project demonstrates how to deploy an application on an EC2 instance using Infrastructure as Code (IaC) with ***Terraform***.
 */
 
 /*
-      // fetching the aws region using data source block
-      data "aws_region" "current" {} -> we don't need to define data source here, becuase we have already define the provider region 
-      into terraform.tf file
+  data "aws_region" "current" {} -> we don't need to define data source here, becuase we have already define the provider region 
+   into terraform.tf file
 */
-
+      
 /* Fetching the ubuntu AMI using data source block */
 data "aws_ami" "ec2_ubuntu" {
   most_recent = true
@@ -25,7 +24,7 @@ data "aws_ami" "ec2_ubuntu" {
 }
 
 /* 
-    Creating an SSH key pair for logging into EC2 instance.
+    Creating an SSH key pair for accessing the EC2 instance.
 
     To generate a ssh key ( public and private ), we require TLS provider becuase AWS does not manage it, that ois already defined into "terraform.tf"
     The "tls_private_key" resource generates both the public and private keys.
