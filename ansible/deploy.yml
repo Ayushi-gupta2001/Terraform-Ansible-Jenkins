@@ -23,11 +23,6 @@
         name: git
         state: present
 
-    - name: set correct permission for ssh key file
-      file: 
-        path: "{{ playbook_dir }}/../infra-as-code/MyEC2InstanceLoginKey"
-        mode: '0600'
-
     - name: copy website files to apache web server file
       copy: 
         src: "{{ playbook_dir }}/../static-website/"

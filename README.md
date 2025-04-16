@@ -43,16 +43,18 @@ This project automates the deployment of a web application on an AWS EC2 instanc
 
  ## :snowflake: Configure Jenkins
 
- 1. Create a new pipeline in Jenkins.
- 2. Generate a GitHub personal access token and add your credentials to Jenkins (Manage Jenkins → Credentials).
- 3. In the pipeline configuration: 
+ 1. Ensure that Git and the Ansible plugin are installed in Jenkins.
+      If you encounter issues running Ansible, try searching for solutions online.
+ 2. Create a new pipeline in Jenkins.
+ 3. Generate a GitHub personal access token and add your credentials to Jenkins (Manage Jenkins → Credentials).
+ 4. In the pipeline configuration: 
     - Enable "POLL SCM"
     - Set the cron schedule to run every minute:
     
     ```
         * * * * *
     ```
-4. Specify your GitHub repository URL and branch name.
+5. Specify your GitHub repository URL and branch name.
 
  ## :arrow_forward: Deploy web application
 
@@ -68,6 +70,9 @@ This project automates the deployment of a web application on an AWS EC2 instanc
     - Assign necessary permissions (e.g., AmazonEC2FullAccess, AmazonS3FullAccess or Admin).
     - Store the AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY securely.
     - Add them as environment variables or credentials in Jenkins.
+    - For more information, refer to this links: :link:
+         https://www.jenkins.io/doc/book/pipeline/jenkinsfile/
+         https://www.youtube.com/watch?v=nxp-WEz0KE8
 
  3. Create an S3 Bucket
     
@@ -93,5 +98,12 @@ This project automates the deployment of a web application on an AWS EC2 instanc
     ```
        http://<public-ip>
     ```
+
+## Important :bangbang:
+
+   - If you forget the password , refer to this link     for storing the password: 
+
+      ##Reset Password for administrator in jenkins: 
+https://www.jenkins.io/doc/book/system-administration/admin-password-reset-instructions/
 
 TADA!! YOUR WEBSITE IS LIVE!! :smiley:
