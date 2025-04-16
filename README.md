@@ -5,7 +5,6 @@ This project automates the deployment of a web application on an AWS EC2 instanc
 -  **Terraform** for infrastructure provisioning
 -  **Jenkins** for CI/CD
 -  **Ansible** for configuration management
--  AWS Account OR IAM Account
 
 ---
 
@@ -39,6 +38,8 @@ This project automates the deployment of a web application on an AWS EC2 instanc
     sudo apt install ansible -y
     ansible --version 
  ```
+
+#### 3. AWS or IAM Account
 
  ## :snowflake: Configure Jenkins
 
