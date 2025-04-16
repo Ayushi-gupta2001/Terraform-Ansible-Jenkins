@@ -27,7 +27,6 @@
       copy: 
         src: "{{ playbook_dir }}/../static-website/"
         dest: /var/www/html/
-      delegate_to: localhost
 
     - name: set the premission for apache
       file: 

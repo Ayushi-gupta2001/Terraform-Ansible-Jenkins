@@ -35,7 +35,7 @@ This project automates the deployment of a web application on an AWS EC2 instanc
 ### 2. Install Ansible
 
  ```
-    sudo apt install ansible -y
+    sudo apt install ansible-core  -y
     ansible --version 
  ```
 
