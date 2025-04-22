@@ -1,0 +1,33 @@
+- name: Deploy static website on EC2 server
+  hosts: all
+  become: true
+  tasks:
+
+    - name: update apt packages
+      apt:  
+        update_cache: yes
+
+    - name: Install Apache web server
+      apt: 
+        name: apache2
+        state: present
+    
+    - name: start and enable Apache service 
+      service: 
+        name: apache2
+        state: started
+        enabled: yes
+
+    - name: Copy website files to Apache document root
+      copy: 
+        src: "{{ playbook_dir }}/../static-website/"
+        dest: /var/www/html/
+
+    - name: Set correct permissions for Apache web directory
+      file: 
+        path: /var/www/html
+        owner: www-data
+        group: www-data
+        mode: '0755'  ## here '0' meaning that there is no special permission is set
+        recurse: yes
+        state: directory
