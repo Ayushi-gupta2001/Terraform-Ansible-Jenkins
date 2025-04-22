@@ -18,11 +18,6 @@
         state: started
         enabled: yes
 
-    - name: Install git
-      apt:
-        name: git
-        state: present
-
     - name: Copy website files to Apache document root
       copy: 
         src: "{{ playbook_dir }}/../static-website/"
